@@ -12,7 +12,7 @@
     "supervisor": "*",
     "connect-assets": "*",
     "livereload": "*",
-    "connect-sass": "*",
-    "node-bourbon": "*"
+    "node-bourbon": "*",
+    "node-neat": "*"
   }
 }

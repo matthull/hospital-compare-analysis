@@ -5188,6 +5188,10 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
     var _geoJsons = [];
 
+    _chart.getPath = function () {
+        return _geoPath;
+    }
+
     _chart._doRender = function () {
         _chart.resetSvg();
         for (var layerIndex = 0; layerIndex < _geoJsons.length; ++layerIndex) {
@@ -5208,6 +5212,15 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             regionG.append("title");
 
             plotData(layerIndex);
+
+            //var zoomed = function () {
+                //_geoPath.projection().translate(d3.event.translate).scale(d3.event.scale);
+                //console.log(_geoPath);
+                //_chart.redraw();
+            //}
+            //var zoom = d3.behavior.zoom().on("zoom", zoomed);
+            //_chart.root().call(zoom);
+
         }
         _projectionFlag = false;
     };

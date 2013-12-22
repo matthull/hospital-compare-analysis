@@ -1,8 +1,16 @@
 extends layout
 
 block content
+    div#container
+        div#us-map
+        div#bogus-chart
+
     != css('dc')
+    != css('app')
 
     != js('d3')
     != js('crossfilter')
     != js('dc')
+
+    != js('charts')
+

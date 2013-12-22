@@ -1,0 +1,17 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+#container {
+    @include outer-container;
+}
+
+#us-map {
+    height: 500px;
+    width: 990px;
+    @include span-columns(8);
+}
+
+#bogus-chart {
+    @include span-columns(4);
+    @include omega;
+}
