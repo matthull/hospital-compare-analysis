@@ -45,7 +45,7 @@ d3.csv('Hospital_Data.csv', function (hospitalData) {
                     filters.push(s);
                 });
                 usMap.redraw();
-                # need to make sure 1 state is always selected
+                // need to make sure 1 state is always selected
             }, 5);
         }
 
