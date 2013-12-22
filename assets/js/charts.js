@@ -11,7 +11,6 @@ d3.csv('Hospital_Data.csv', function (hospitalData) {
     window.stateGroup = stateDim.group().reduceCount();
     window.bogusGroup = stateDim.group().reduceSum(function (s) { return s['ZIP Code']; });
 
-
     d3.json("us-states.json", function (statesJson) {
         window.states = statesJson;
 
@@ -36,7 +35,7 @@ d3.csv('Hospital_Data.csv', function (hospitalData) {
                 usMap.svg().selectAll("g.layer0 path").attr("d", usMap.getPath());
                 window.visible = states.features.filter(function (s) {
                     var centroid = usMap.getPath().centroid(s);
-                    return centroid[0] > 0 && centroid[0] < usMap.width() && centroid[1] > 0 && centroid[1] < usMap.width()
+                    return centroid[0] > 0 && centroid[0] < usMap.width() && centroid[1] > 0 && centroid[1] < usMap.height()
                     //console.log('centroid for state '+ s.properties.name+ ' is ' + usMap.getPath().centroid(s));
                 }).map(function (s) {return s.properties.name});
                 var filters = usMap.filters();
@@ -45,7 +44,8 @@ d3.csv('Hospital_Data.csv', function (hospitalData) {
                     filters.push(s);
                 });
                 usMap.redraw();
-                // need to make sure 1 state is always selected
+                //TODO: need to make sure 1 state is always selected
+                //TODO: better line sizes - currently gets thicker as you zoom out
             }, 5);
         }
 
