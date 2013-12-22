@@ -8,7 +8,6 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-require('coffee-script');
 
 var app = express();
 
@@ -25,10 +24,6 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 604800 }));
 
 app.use(require('connect-assets')());
-
-app.get('/templates.js', ember_handlebars(__dirname + '/assets/js/templates', {
-    cache: false
-}));
 
 // development only
 if ('development' == app.get('env')) {
