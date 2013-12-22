@@ -1,7 +1,7 @@
 var usMap = dc.geoChoroplethChart('#us-map');
 
-//d3.csv('Hospital_Data.csv', function (hospitalData) {
-    //window.hospitalData = hospitalData.map(function (h) {
+//d3.csv('Hospital_Data.csv', function (hospitals) {
+    //window.hospitals = hospitals.map(function (h) {
         //fullAddress = [h['Address 1']];
         //if (!!h['Address 2']) fullAddress.push(h['Address 2']);
         //fullAddress.push([ h['City'], h['State'], h['ZIP Code'] ]);
@@ -10,7 +10,7 @@ var usMap = dc.geoChoroplethChart('#us-map');
         //return h;
     //});
 
-    //hospitalData = hospitalData.map(function (h) {
+    //hospitals = hospitals.map(function (h) {
 
         //d3.json('http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluubn10anq%2C2s%3Do5-90bwgf&location=1555 Blake St,Denver,CO,80202', function (resp) {
             //h.latLng = resp.results[0].locations[0].latLng;
@@ -18,8 +18,14 @@ var usMap = dc.geoChoroplethChart('#us-map');
         //});
     //});
 
-d3.json('hospitals.json', function (hospitalData) {
-    var data = crossfilter(hospitalData);
+d3.json('hospitals.json', function (hospitals) {
+    window.hospitals = hospitals;
+    //window.hospitals = hospitals.map(function (h) {
+        //d3.json('http://data.fcc.gov/api/block/find?format=json&latitude='+h.latLng.lat+'&longitude='+h.latLng.lng+'&showall=true', function (c) {
+        //return h;
+    //});
+
+    var data = crossfilter(hospitals);
 
     window.stateDim = data.dimension(function (d) {
         return d.State;
