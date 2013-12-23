@@ -17,14 +17,14 @@ d3.json('hospitals.json', function (hospitals) {
         states = topojson.feature(us, us.objects.states).features;
 
         usMap
-            .width(960)
-            .height(500)
+            .width(480)
+            .height(250)
             .dimension(stateDim)
             .group(stateGroup)
             .colors(d3.scale.quantize().range(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"]))
             .colorDomain([0, 500])
             .colorCalculator(function (d) { return d ? usMap.colors()(d) : '#ccc'; })
-            .projection(d3.geo.albersUsa())
+            .projection(d3.geo.albersUsa().scale(535).translate([240,125]))
             .overlayGeoJson(states, "state", function (d) {
                 return d.properties.name;
             });
@@ -35,7 +35,7 @@ d3.json('hospitals.json', function (hospitals) {
 
         function zoomed() {
             usMap.getPath().projection().translate(d3.event.translate).scale(d3.event.scale);
-            usMap.svg().selectAll("g.layer0 path").attr("d", usMap.getPath());
+            usMap.svg().selectAll("g.layer0 path").attr("d", usMap.getPath()).style("stroke-width", "1.5px");
             dc.events.trigger(function () {
                 window.visible = states.filter(function (s) {
                     centroid = usMap.getPath().centroid(s);
@@ -48,11 +48,10 @@ d3.json('hospitals.json', function (hospitals) {
                 });
                 usMap.redraw();
                 //TODO: need to make sure 1 state is always selected
-                //TODO: better line sizes - currently gets thicker as you zoom out
             }, 25);
         }
 
-        window.zoom = d3.behavior.zoom().translate(d3.geo.albersUsa().translate()).scale(d3.geo.albersUsa().scale()).on("zoom", zoomed);
+        window.zoom = d3.behavior.zoom().translate(usMap.getPath().projection().translate()).scale(usMap.getPath().projection().scale()).on("zoom", zoomed);
         dc.renderAll();
     });
 });

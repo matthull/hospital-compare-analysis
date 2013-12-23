@@ -6,12 +6,6 @@
 }
 
 #us-map {
-    height: 500px;
-    width: 990px;
-    @include span-columns(8);
-}
-
-#bogus-chart {
-    @include span-columns(4);
-    @include omega;
+    height: 250px;
+    @include span-columns(6);
 }
