@@ -7,5 +7,13 @@
 
 #us-map {
     height: 250px;
-    @include span-columns(6);
+    @include span-columns(12);
+    @include omega;
+}
+
+.legend {
+    @include span-columns(2);
+    height: 40px;
+    margin: 10px;
+    font-size: 10px;
 }

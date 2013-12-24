@@ -2,13 +2,18 @@ extends layout
 
 block content
     div#container
-        div#us-map
+        div#map
+            div#us-map
+            div#map-legend.legend
         div#bogus-chart
 
     != css('dc')
     != css('app')
 
+    != js('underscore')
     != js('d3')
+    != js('colorlegend')
+    != js('colorbrewer')
     != js('topojson')
     != js('crossfilter')
     != js('dc')

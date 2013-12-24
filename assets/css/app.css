@@ -19,6 +19,18 @@
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 48.82117%; }
+  width: 100%;
+  margin-right: 0; }
   #us-map:last-child {
+    margin-right: 0; }
+
+.legend {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 14.70196%;
+  height: 40px;
+  margin: 10px;
+  font-size: 10px; }
+  .legend:last-child {
     margin-right: 0; }
