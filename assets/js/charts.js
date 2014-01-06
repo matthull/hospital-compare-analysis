@@ -1,43 +1,6 @@
 var usMap = dc.geoChoroplethChart('#us-map');
 
 d3.json('hospitals.json', function (hospitals) {
-    window.hospitals = hospitals;
-    //window.hospitals.filter(function (h) {return !h.geocodedLocation.results[0].locations[0]}).forEach(function (h) {
-        ////urlParts = ['http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluubn10r2h%2Cbw%3Do5-90r2hw'];
-        //urlParts = ['http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluubn10rnu%2C8x%3Do5-90r2hy'];
-        //urlParts.push('street=' + encodeURIComponent(h['Address 1']));
-        //urlParts.push('city=' + encodeURIComponent(h['City']));
-        //urlParts.push('state=' + h['State']);
-        //urlParts.push('postalCode=' + h['ZIP Code']);
-        //url = urlParts.join('&');
-        //d3.json(url, function(resp) {
-            //h.geocodedLocation = resp;
-        //});
-    //});
-
-    //hospitals.forEach(function (h) {
-        //delete h.latLng;
-        //delete h.censusBlock;
-        //urlParts = ['http://data.fcc.gov/api/block/find?format=json'];
-        //loc = h.geocodedLocation;
-        //if (h.geocodedLocation && h.geocodedLocation.results[0] && h.geocodedLocation.results[0].locations[0]) {
-            //latLng = loc.results[0].locations[0].latLng;
-            //urlParts = ['http://data.fcc.gov/api/block/find?format=json&'];
-            //urlParts.push('latitude=' + latLng.lat);
-            //urlParts.push('longitude=' + latLng.lng);
-            //urlParts.push('showall=true');
-            //url = urlParts.join('&');
-            //d3.json(url, function (resp) {
-                //h.censusData = resp;
-            //});
-        //}
-    //});
-
-    // For now, fake census data for providers we don't have lat/long for
-    //hospitals.forEach(function (h) {
-        //if (!h.censusData) h.censusData = hospitals[0].censusData;
-    //});
-
     d3.csv('outcomes.csv', function (outcomesRaw) {
         d3.csv('medicare_spending.csv', function (spendingRaw) {
             function comparisonCodeFor(comparisonDescription) {

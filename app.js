@@ -8,6 +8,11 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var mongo = require('mongodb');
+
+var MongoServer = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
 
 var app = express();
 
@@ -43,6 +48,16 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-//var livereload = require('livereload');
-//var lrServer = livereload.createServer();
-//lrServer.watch(__dirname + "/public");
+var server = new MongoServer('localhost', 27017, {auto_reconnect: true});
+db = new Db('hosp', server);
+
+app.get('/hospitals', function (req, res) {
+    db.open(function () {
+        var collection = db.collection('hospitalsRaw');
+        collection.find({}).toArray(function (err, items) {
+            if (err) res.send(err, 500);
+            else res.send(items);
+            db.close();
+        });
+    })
+});

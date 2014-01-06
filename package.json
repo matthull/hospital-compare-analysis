@@ -13,6 +13,8 @@
     "connect-assets": "*",
     "livereload": "*",
     "node-bourbon": "*",
-    "node-neat": "*"
+    "node-neat": "*",
+    "mongodb": "*",
+    "request": "*"
   }
 }
