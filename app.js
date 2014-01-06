@@ -53,7 +53,7 @@ db = new Db('hosp', server);
 
 app.get('/hospitals', function (req, res) {
     db.open(function () {
-        var collection = db.collection('hospitalsRaw');
+        var collection = db.collection('hospitalCompare');
         collection.find({}).toArray(function (err, items) {
             if (err) res.send(err, 500);
             else res.send(items);
