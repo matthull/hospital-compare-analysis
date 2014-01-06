@@ -17,6 +17,33 @@ db.open(function (err, db) {
 
     destinationCollection.remove();
 
+    var comparisonCodes = {
+        'Better than U.S. National Rate': 'above',
+        'No Different than U.S. National Rate': 'same',
+        'Worse than U.S. National Rate': 'below',
+        'Not Available': 'na',
+        'Number of Cases Too Small': 'na'
+    };
+
+        // Ownerships values from source data
+        //"Proprietary",
+        //"Government - Local",
+        //"Government - Federal",
+        //"Physician",
+        //"Voluntary non-profit - Private",
+        //"Government - State",
+        //"Government Federal",
+        //"Voluntary non-profit - Other",
+        //"Voluntary non-profit - Church",
+        //"Government - Hospital District or Authority",
+        //"Tribal"
+
+        // categories from source data
+           //"Acute Care Hospitals",
+        //"Critical Access Hospitals",
+        //"Childrens",
+        //"ACUTE CARE - VETERANS ADMINISTRATION"
+
     sourceCollection.find({}).each(function (err, sourceDoc) {
         if (sourceDoc && sourceDoc.censusData) {
             console.log('getting outcomes for provider number ' + sourceDoc.provider_number);
@@ -36,16 +63,18 @@ db.open(function (err, db) {
                         category: sourceDoc.hospital_type,
                         hasEmergencyServices: sourceDoc.emergency_services,
 
-                        readmissionRates: {
-                            heartAttack: outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_heart_attack,
-                            heartFailure: outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_heart_failure,
-                            pneumonia: outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_pneumonia
+                        outcomeUsRateComparisons: {
+                            readmissionRates: {
+                                heartAttack: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_heart_attack],
+                                heartFailure: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_heart_failure],
+                                pneumonia: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_readmission_rates_from_pneumonia]
 
-                        },
-                        mortalityRates: {
-                            heartAttack: outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_heart_attack,
-                            heartFailure: outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_heart_failure,
-                            pneumonia: outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_pneumonia
+                            },
+                            mortalityRates: {
+                                heartAttack: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_heart_attack],
+                                heartFailure: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_heart_failure],
+                                pneumonia: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_pneumonia]
+                            }
                         }
                     }
                     destinationCollection.save(hospital);
