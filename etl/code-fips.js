@@ -13,7 +13,7 @@ db.open(function(err,db) {
     var collection = db.collection('hospitalsRaw');
     collection.find({}).each(function (err, doc) {
         if (doc) console.log('processing doc ' + doc._id);
-        if (doc && typeof doc.censusData === "string") {
+        if ((doc && typeof doc.censusData === "string") || (doc && !doc.censusData)){
             doc.censusData = undefined;
             console.log('removing census data from doc ' + doc._id);
             collection.save(doc);
