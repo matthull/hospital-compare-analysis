@@ -25,24 +25,26 @@ db.open(function (err, db) {
         'Number of Cases Too Small': 'na'
     };
 
-        // Ownerships values from source data
-        //"Proprietary",
-        //"Government - Local",
-        //"Government - Federal",
-        //"Physician",
-        //"Voluntary non-profit - Private",
-        //"Government - State",
-        //"Government Federal",
-        //"Voluntary non-profit - Other",
-        //"Voluntary non-profit - Church",
-        //"Government - Hospital District or Authority",
-        //"Tribal"
+    var ownershipCodes = {
+        'Proprietary': 'Other' ,
+        'Government - Local': 'Government',
+        'Government - Federal': 'Government',
+        'Physician': 'Private',
+        'Voluntary non-profit - Private': 'Non-profit',
+        'Government - State': 'Government',
+        'Government Federal': 'Government',
+        'Voluntary non-profit - Other': 'Non-profit',
+        'Voluntary non-profit - Church': 'Non-profit',
+        'Government - Hospital District or Authority': 'Government',
+        'Tribal': 'Other'
+    };
 
-        // categories from source data
-           //"Acute Care Hospitals",
-        //"Critical Access Hospitals",
-        //"Childrens",
-        //"ACUTE CARE - VETERANS ADMINISTRATION"
+    var hospitalCategories = {
+        'Acute Care Hospitals': 'Acute Care',
+        'Critical Access Hospitals': 'Critical Access',
+        'Childrens': 'Childrens',
+        'ACUTE CARE - VETERANS ADMINISTRATION': 'Acute Care'
+    };
 
     sourceCollection.find({}).each(function (err, sourceDoc) {
         if (sourceDoc && sourceDoc.censusData) {
@@ -59,8 +61,8 @@ db.open(function (err, db) {
                             countyName: sourceDoc.censusData.County.name,
                             zipCode: sourceDoc.zip_code
                         },
-                        ownership: sourceDoc.hospital_owner,
-                        category: sourceDoc.hospital_type,
+                        ownership: ownershipCodes[sourceDoc.hospital_owner],
+                        category: hospitalCategories[sourceDoc.hospital_type],
                         hasEmergencyServices: sourceDoc.emergency_services,
 
                         outcomeUsRateComparisons: {
@@ -76,10 +78,10 @@ db.open(function (err, db) {
                                 pneumonia: comparisonCodes[outcomes.comparison_to_u_s_rate_hospital_30_day_death_mortality_rates_from_pneumonia]
                             }
                         }
-                    }
+                    };
                     destinationCollection.save(hospital);
                 }
             });
         }
     });
-})
+});
