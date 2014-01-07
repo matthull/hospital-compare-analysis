@@ -2,10 +2,22 @@ extends layout
 
 block content
     div#container
-        div#map
-            div#us-map
-            div#map-legend.legend
-        div#bogus-chart
+        div#us-map
+        div#summary-stats
+            div#total-hospitals
+                <h2>Total Hospitals</h2>
+                <h3><span class="number-display"></span></h3>
+            div#overall-outcomes-score
+                <h2>Average Score</h2>
+                <h3><span class="number-display"></h3>
+        div#map-legend.legend
+
+        div#category-counts
+        div#ownership-counts
+        div#has-ed-counts
+        div#category-outcomes
+        div#ownership-outcomes
+        div#has-ed-outcomes
 
     != css('dc')
     != css('app')

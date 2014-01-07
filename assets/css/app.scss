@@ -1,19 +1,74 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 
+h2, h3 {
+    margin: 0;
+}
+
 #container {
     @include outer-container;
 }
 
 #us-map {
     height: 250px;
-    @include span-columns(12);
+    @include span-columns(6);
+}
+
+#summary-stats {
+    height: 250px;
+    @include span-columns(6);
     @include omega;
+    text-align: center;
+    #total-hospitals {
+        width: 50%;
+    }
+    #overall-outcomes-score {
+        width: 50%;
+    }
+}
+
+#category-counts {
+    @include span-columns(4);
+    height: 200px;
+    margin: 18px 0 0 0;
+}
+
+#ownership-counts {
+    @include span-columns(4);
+    height: 200px;
+    margin: 18px 0 0 0;
+}
+
+#has-ed-counts {
+    @include span-columns(4);
+    @include omega;
+    height: 200px;
+    margin: 18px 0 0 0;
+}
+
+#category-outcomes {
+    @include span-columns(4);
+    height: 200px;
+    margin: 18px 0 0 0;
+}
+
+#ownership-outcomes {
+    @include span-columns(4);
+    height: 200px;
+    margin: 18px 0 0 0;
+}
+
+#has-ed-outcomes {
+    @include span-columns(4);
+    @include omega;
+    height: 200px;
+    margin: 18px 0 0 0;
 }
 
 .legend {
-    @include span-columns(2);
+    @include span-columns(12);
     height: 40px;
     margin: 10px;
     font-size: 10px;
+    @include omega;
 }

@@ -3,6 +3,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+h2, h3 {
+  margin: 0; }
+
 #container {
   *zoom: 1;
   max-width: 68em;
@@ -19,18 +22,95 @@
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 100%;
-  margin-right: 0; }
+  width: 48.82117%; }
   #us-map:last-child {
+    margin-right: 0; }
+
+#summary-stats {
+  height: 250px;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-right: 0;
+  text-align: center; }
+  #summary-stats:last-child {
+    margin-right: 0; }
+  #summary-stats #total-hospitals {
+    width: 50%; }
+  #summary-stats #overall-outcomes-score {
+    width: 50%; }
+
+#category-counts {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #category-counts:last-child {
+    margin-right: 0; }
+
+#ownership-counts {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #ownership-counts:last-child {
+    margin-right: 0; }
+
+#has-ed-counts {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #has-ed-counts:last-child {
+    margin-right: 0; }
+
+#category-outcomes {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #category-outcomes:last-child {
+    margin-right: 0; }
+
+#ownership-outcomes {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #ownership-outcomes:last-child {
+    margin-right: 0; }
+
+#has-ed-outcomes {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0;
+  height: 200px;
+  margin: 18px 0 0 0; }
+  #has-ed-outcomes:last-child {
     margin-right: 0; }
 
 .legend {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 14.70196%;
+  width: 100%;
   height: 40px;
   margin: 10px;
-  font-size: 10px; }
+  font-size: 10px;
+  margin-right: 0; }
   .legend:last-child {
     margin-right: 0; }
